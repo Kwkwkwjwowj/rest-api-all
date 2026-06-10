@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dokumentasi API | OwnBlox</title>
+  <meta name="description" content="Dokumentasi REST API dengan tampilan modern dan tester endpoint bawaan." />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script defer src="/script.js"></script>
+</head>
+<body>
+  <div class="loading-screen">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Memuat dokumentasi...</div>
+    </div>
+  </div>
+
+  <button class="menu-btn" aria-label="Buka kategori">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+
+  <aside class="category-panel" aria-label="Daftar kategori">
+    <div class="panel-header">
+      <h3>Kategori API</h3>
+      <span class="close-btn" aria-label="Tutup">×</span>
+    </div>
+    <nav class="category-list"></nav>
+  </aside>
+
+  <div class="container">
+    <header class="doc-hero">
+      <div class="hero-copy">
+        <div class="hero-badge">API Explorer</div>
+        <h1>Dokumentasi REST API</h1>
+        <p>
+          Cari endpoint, buka tester, salin URL, dan cek response langsung dari satu halaman.
+        </p>
+      </div>
+
+      <div class="hero-metrics">
+        <div class="metric-card">
+          <span id="total-endpoints">0</span>
+          <small>Total endpoint</small>
+        </div>
+        <div class="metric-card">
+          <span id="online-endpoints">0</span>
+          <small>Online</small>
+        </div>
+        <div class="metric-card">
+          <span id="offline-endpoints">0</span>
+          <small>Offline</small>
+        </div>
+      </div>
+    </header>
+
+    <section class="toolbar">
+      <div class="search-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input id="search-input" type="search" placeholder="Cari endpoint, deskripsi, atau kategori..." />
+      </div>
+
+      <div class="toolbar-actions">
+        <button id="showChangelog" class="ghost-btn">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          Changelog
+        </button>
+        <a href="/api" class="ghost-btn">
+          <i class="fa-solid fa-sitemap"></i>
+          API Registry
+        </a>
+      </div>
+    </section>
+
+    <section id="api-categories" class="api-categories"></section>
+
+    <footer class="doc-footer">
+      <p>OwnBlox REST API • tampilan modern • endpoint tetap standar REST.</p>
+    </footer>
+  </div>
+
+  <div id="changelogPopup" class="popup-overlay">
+    <div class="popup-card">
+      <div class="popup-header">
+        <h3>Changelog</h3>
+        <button class="close-popup" aria-label="Tutup">×</button>
+      </div>
+      <div id="changelogList" class="changelog-list"></div>
+      <div class="popup-actions">
+        <button id="markAsRead" class="primary-btn">Tandai sudah dibaca</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="apiModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2 id="modalTitle">API Tester</h2>
+        <button class="close-modal" aria-label="Tutup">×</button>
+      </div>
+
+      <div class="modal-controls">
+        <select class="tester-method">
+          <option>GET</option>
+          <option>POST</option>
+          <option>PUT</option>
+          <option>DELETE</option>
+        </select>
+        <input class="tester-url" type="text" placeholder="Masukkan endpoint" />
+      </div>
+
+      <div class="params-container"></div>
+
+      <div class="tester-actions">
+        <button class="send-btn primary-btn">Kirim Request</button>
+      </div>
+
+      <div class="response-panel">
+        <div class="response-meta">
+          <span class="response-status"></span>
+          <span class="response-time"></span>
+        </div>
+        <div class="loading-indicator" style="display:none;">
+          <div class="loading-spinner small"></div>
+          <span>Menunggu response...</span>
+        </div>
+        <div class="response-content"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
